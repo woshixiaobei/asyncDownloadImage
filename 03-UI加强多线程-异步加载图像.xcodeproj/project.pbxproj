@@ -52,6 +52,7 @@
 		0BD108E31CFB11DD0004ED57 /* TPAppModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD108E21CFB11DD0004ED57 /* TPAppModel.m */; };
 		0BD108E81CFB14280004ED57 /* TPAppCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD108E61CFB14280004ED57 /* TPAppCell.m */; };
 		0BD108E91CFB14280004ED57 /* TPAppCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD108E71CFB14280004ED57 /* TPAppCell.xib */; };
+		0BD108EB1CFB22120004ED57 /* apps.json in Resources */ = {isa = PBXBuildFile; fileRef = 0BD108EA1CFB22120004ED57 /* apps.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -145,6 +146,7 @@
 		0BD108E51CFB14280004ED57 /* TPAppCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPAppCell.h; sourceTree = "<group>"; };
 		0BD108E61CFB14280004ED57 /* TPAppCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPAppCell.m; sourceTree = "<group>"; };
 		0BD108E71CFB14280004ED57 /* TPAppCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPAppCell.xib; sourceTree = "<group>"; };
+		0BD108EA1CFB22120004ED57 /* apps.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = apps.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +190,7 @@
 				0BD108E71CFB14280004ED57 /* TPAppCell.xib */,
 				0BD108E41CFB12140004ED57 /* Model */,
 				0BD1085E1CFB09C30004ED57 /* Main.storyboard */,
+				0BD108EA1CFB22120004ED57 /* apps.json */,
 				0BD108611CFB09C30004ED57 /* Assets.xcassets */,
 				0BD108631CFB09C30004ED57 /* LaunchScreen.storyboard */,
 				0BD108661CFB09C30004ED57 /* Info.plist */,
@@ -393,6 +396,7 @@
 			files = (
 				0BD108651CFB09C30004ED57 /* LaunchScreen.storyboard in Resources */,
 				0BD108621CFB09C30004ED57 /* Assets.xcassets in Resources */,
+				0BD108EB1CFB22120004ED57 /* apps.json in Resources */,
 				0BD108601CFB09C30004ED57 /* Main.storyboard in Resources */,
 				0BD108E91CFB14280004ED57 /* TPAppCell.xib in Resources */,
 			);
