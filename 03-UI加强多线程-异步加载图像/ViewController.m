@@ -62,7 +62,7 @@ static NSString * cellId = @"cellId";
         NSLog(@"%@",[NSThread currentThread]);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"请求失败");
+        NSLog(@"请求失败11");
     }];
     
 
