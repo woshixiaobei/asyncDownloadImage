@@ -7,12 +7,36 @@
 //
 
 #import "ViewController.h"
+#import "TPAppModel.h"
 
+
+static NSString * cellId = @"cellId";
 @interface ViewController ()
+
+/**
+ *  表格视图
+ */
+@property (nonatomic, strong) UITableView *tableView;
+/**
+ *  应用程序列表数组
+ */
+@property (nonatomic, strong) NSArray <TPAppModel *>*appList;
 
 @end
 
 @implementation ViewController
+
+- (void)loadView {
+
+    _tableView= [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+    self.view = _tableView;
+    
+    //注册原型cell
+    
+    
+
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -23,6 +47,7 @@
     [super didReceiveMemoryWarning];
    
 }
+
 
 
 
