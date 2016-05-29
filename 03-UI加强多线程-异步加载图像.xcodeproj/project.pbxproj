@@ -50,6 +50,8 @@
 		0BD108DF1CFB0ACF0004ED57 /* CZBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD108BA1CFB0ACF0004ED57 /* CZBaseView.m */; };
 		0BD108E01CFB0ACF0004ED57 /* CZBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD108BC1CFB0ACF0004ED57 /* CZBaseViewController.m */; };
 		0BD108E31CFB11DD0004ED57 /* TPAppModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD108E21CFB11DD0004ED57 /* TPAppModel.m */; };
+		0BD108E81CFB14280004ED57 /* TPAppCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD108E61CFB14280004ED57 /* TPAppCell.m */; };
+		0BD108E91CFB14280004ED57 /* TPAppCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD108E71CFB14280004ED57 /* TPAppCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -140,6 +142,9 @@
 		0BD108BC1CFB0ACF0004ED57 /* CZBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CZBaseViewController.m; sourceTree = "<group>"; };
 		0BD108E11CFB11DD0004ED57 /* TPAppModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPAppModel.h; sourceTree = "<group>"; };
 		0BD108E21CFB11DD0004ED57 /* TPAppModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPAppModel.m; sourceTree = "<group>"; };
+		0BD108E51CFB14280004ED57 /* TPAppCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPAppCell.h; sourceTree = "<group>"; };
+		0BD108E61CFB14280004ED57 /* TPAppCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPAppCell.m; sourceTree = "<group>"; };
+		0BD108E71CFB14280004ED57 /* TPAppCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPAppCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +183,9 @@
 				0BD108591CFB09C30004ED57 /* AppDelegate.m */,
 				0BD1085B1CFB09C30004ED57 /* ViewController.h */,
 				0BD1085C1CFB09C30004ED57 /* ViewController.m */,
+				0BD108E51CFB14280004ED57 /* TPAppCell.h */,
+				0BD108E61CFB14280004ED57 /* TPAppCell.m */,
+				0BD108E71CFB14280004ED57 /* TPAppCell.xib */,
 				0BD108E41CFB12140004ED57 /* Model */,
 				0BD1085E1CFB09C30004ED57 /* Main.storyboard */,
 				0BD108611CFB09C30004ED57 /* Assets.xcassets */,
@@ -386,6 +394,7 @@
 				0BD108651CFB09C30004ED57 /* LaunchScreen.storyboard in Resources */,
 				0BD108621CFB09C30004ED57 /* Assets.xcassets in Resources */,
 				0BD108601CFB09C30004ED57 /* Main.storyboard in Resources */,
+				0BD108E91CFB14280004ED57 /* TPAppCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +442,7 @@
 				0BD108BD1CFB0ACF0004ED57 /* AFHTTPSessionManager.m in Sources */,
 				0BD108CD1CFB0ACF0004ED57 /* UIImage+GIF.m in Sources */,
 				0BD108C41CFB0ACF0004ED57 /* NSData+ImageContentType.m in Sources */,
+				0BD108E81CFB14280004ED57 /* TPAppCell.m in Sources */,
 				0BD108CF1CFB0ACF0004ED57 /* UIImage+WebP.m in Sources */,
 				0BD108D61CFB0ACF0004ED57 /* NSObject+CZAddition.m in Sources */,
 				0BD108DC1CFB0ACF0004ED57 /* UIView+CZAddition.m in Sources */,

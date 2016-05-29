@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="111" id="KGk-i7-Jjw" customClass="TPAppCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yi3-09-q6c">
+                        <rect key="frame" x="20" y="10" width="80" height="80"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="80" id="52p-5A-TEX"/>
+                            <constraint firstAttribute="width" constant="80" id="pjt-oW-Nui"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oOx-tg-gSN">
+                        <rect key="frame" x="110" y="10" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kcJ-Bt-aU7">
+                        <rect key="frame" x="110" y="55" width="33" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="yi3-09-q6c" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="DZ5-Iu-IrI"/>
+                    <constraint firstItem="kcJ-Bt-aU7" firstAttribute="top" secondItem="oOx-tg-gSN" secondAttribute="bottom" constant="24" id="Ecg-CF-NYA"/>
+                    <constraint firstItem="yi3-09-q6c" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Mkc-e8-Z9s"/>
+                    <constraint firstItem="kcJ-Bt-aU7" firstAttribute="leading" secondItem="oOx-tg-gSN" secondAttribute="leading" id="SJJ-9M-Fam"/>
+                    <constraint firstItem="oOx-tg-gSN" firstAttribute="top" secondItem="yi3-09-q6c" secondAttribute="top" id="WHR-RV-YN0"/>
+                    <constraint firstItem="oOx-tg-gSN" firstAttribute="leading" secondItem="yi3-09-q6c" secondAttribute="trailing" constant="10" id="arK-By-baw"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="downloadLabel" destination="kcJ-Bt-aU7" id="g72-ed-Cd1"/>
+                <outlet property="iconView" destination="yi3-09-q6c" id="cXJ-F7-gnQ"/>
+                <outlet property="nameLabel" destination="oOx-tg-gSN" id="r7v-eN-P4O"/>
+            </connections>
+            <point key="canvasLocation" x="280.5" y="343.5"/>
+        </tableViewCell>
+    </objects>
+</document>
