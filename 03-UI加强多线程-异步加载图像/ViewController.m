@@ -59,7 +59,7 @@ static NSString * cellId = @"cellId";
     //2.使用GET方法,获取网络方法
     [manager GET:@"https://raw.githubusercontent.com/woshixiaobei/asyncDownloadImage/master/json" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSArray * responseObject) {
         NSLog(@"%@,%@",responseObject,[responseObject class]);
-        
+        NSLog(@"%@",[NSThread currentThread]);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"请求失败");
