@@ -11,7 +11,7 @@
 #import "TPAppCell.h"
 #import "AFNetworking.h"
 #import "UIImageView+WebCache.h"
-
+#import "CZAdditions.h"
 
 static NSString * cellId = @"cellId";
 @interface ViewController ()<UITableViewDataSource>
@@ -130,6 +130,18 @@ static NSString * cellId = @"cellId";
         return cell;
     }
     
+    
+    //判断沙盒缓存是否存在
+    cacheImage = [UIImage imageWithContentsOfFile:[self cachePathWithURLString:model.icon]];
+    if (cacheImage != nil) {
+        NSLog(@"返回到沙盒图像");
+        //1.设置cell图像
+        cell.iconView.image = cacheImage;
+        //2.设置内存缓存
+        [_imageCache setObject:cacheImage forKey:model.icon];
+        return cell;
+    }
+    
     //加载网络图片
     NSURL *url = [NSURL URLWithString:model.icon];
     
@@ -158,6 +170,9 @@ static NSString * cellId = @"cellId";
         //将图像保存到缓冲池,判断图像是否正确从网络服务器下载完成
         if (image != nil) {
             [self.imageCache setObject:image forKey:model.icon];
+            
+            //将图像保存到沙盒
+            [data writeToFile:[self cachePathWithURLString:model.icon] atomically:YES];
         }
         
         //?????下载完成之后,将url对应的操作从缓冲池中移除
@@ -177,6 +192,24 @@ static NSString * cellId = @"cellId";
     //将操作添加到下载缓冲池
     [_operationCache setObject:op forKey:model.icon];
     return cell;
+}
+
+/**
+ *  根据url字符串生成缓存的全路径
+ */
+
+
+- (NSString *) cachePathWithURLString:(NSString *)urlString {
+
+    //1.获取cache目录
+    NSString *cacheDir = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).lastObject;
+    
+    //2.生成MD5的文件
+    NSString *fileName = [urlString cz_md5String];
+    
+    //3.返回合成的全路径
+    return [cacheDir stringByAppendingPathComponent:fileName];
+
 }
 
 @end
