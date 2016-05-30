@@ -32,6 +32,10 @@ static NSString * cellId = @"cellId";
  *  图像缓冲池
  */
 @property (nonatomic, strong) NSMutableDictionary *imageCache;
+/**
+ *  操作缓冲池
+ */
+@property (nonatomic, strong) NSMutableDictionary *operationCache;
 @end
 
 @implementation ViewController
@@ -135,8 +139,14 @@ static NSString * cellId = @"cellId";
     //1.添加操作
     NSBlockOperation *op = [NSBlockOperation blockOperationWithBlock:^{
         
+        NSLog(@"正在下载的图像%@,%zd",model.name,self.downloadQueue.operationCount);
         //0.模拟延迟
-        [NSThread sleepForTimeInterval:1.0];
+//        [NSThread sleepForTimeInterval:1.0];
+        //0.假设第0张下载事件特别长,模拟延时
+        if (indexPath.row == 0) {
+            [NSThread sleepForTimeInterval:3.0];
+        }
+        
         //1>.将数据转换为二进制数据
         NSData *data = [NSData dataWithContentsOfURL:url];
         //2>.将二进制数据转为图像
@@ -147,12 +157,17 @@ static NSString * cellId = @"cellId";
         
         //3>.在主线程上更新UI
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            NSLog(@"队列中下载的操作数是%zd",self.downloadQueue.operationCount);
+            
             cell.iconView.image = image;
         }];
         
     }];
     //2.将操作添加到队列
     [_downloadQueue addOperation:op];
+    
+    //将操作添加到下载缓冲池
+    [_operationCache setObject:op forKey:model.icon];
     return cell;
 }
 
