@@ -108,12 +108,15 @@ static NSString * cellId = @"cellId";
     //加载网络图片
     NSURL *url = [NSURL URLWithString:model.icon];
     //[cell.iconView sd_setImageWithURL:url];
+    UIImage *placeHolder = [UIImage imageNamed:@"user_default"];
+    cell.iconView.image = placeHolder;
     
     //异步加载图像
     //1.添加操作
     NSBlockOperation *op = [NSBlockOperation blockOperationWithBlock:^{
         
-    
+        //0.模拟延迟
+        [NSThread sleepForTimeInterval:1.0];
         //1>.将数据转换为二进制数据
         NSData *data = [NSData dataWithContentsOfURL:url];
         //2>.将二进制数据转为图像
