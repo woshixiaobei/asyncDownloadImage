@@ -74,6 +74,8 @@ static NSString * cellId = @"cellId";
     //2.没有完成的下载操作
     [_imageCache removeAllObjects];
     [_downloadQueue cancelAllOperations];
+    //清空下载操作缓冲池
+    [_operationCache removeAllObjects];
 }
 #pragma mark-加载数据
 - (void) loadData {
@@ -151,13 +153,19 @@ static NSString * cellId = @"cellId";
         NSData *data = [NSData dataWithContentsOfURL:url];
         //2>.将二进制数据转为图像
         UIImage *image = [UIImage imageWithData:data];
+    
         
-        //将图像添加到图像缓冲池中
-        [self.imageCache setObject:image forKey:model.icon];
+        //将图像保存到缓冲池,判断图像是否正确从网络服务器下载完成
+        if (image != nil) {
+            [self.imageCache setObject:image forKey:model.icon];
+        }
+        
+        //?????下载完成之后,将url对应的操作从缓冲池中移除
+        [self.operationCache removeObjectForKey:model.icon];
         
         //3>.在主线程上更新UI
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            NSLog(@"队列中下载的操作数是%zd",self.downloadQueue.operationCount);
+            NSLog(@"队列中下载的操作数是%zd,%@",self.downloadQueue.operationCount,self.operationCache);
             
             cell.iconView.image = image;
         }];
