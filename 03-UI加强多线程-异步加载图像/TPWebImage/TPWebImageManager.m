@@ -97,6 +97,13 @@
     
     //4.创建下载单张图像的操作
     TPWebImageDownloadOperation *op = [TPWebImageDownloadOperation downloadOperationWithURLString:urlString cachePath:cachePath];
+    
+    //设置操作回调
+    __weak TPWebImageDownloadOperation *weakOp = op;
+    [op setCompletionBlock:^{
+        NSLog(@"下载操作完成-%@,%@",[NSThread currentThread],weakOp.downloadImage);
+    }];
+    
     //添加到队列
     [_downloadQueue addOperation:op];
     //添加到下载操作缓冲池

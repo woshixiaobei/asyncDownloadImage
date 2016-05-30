@@ -56,6 +56,7 @@
         }
         //判断二进制数据是否获得成功
         if (data != nil) {
+            //使用成员变量记录下载完成的图像
             _downloadImage = [UIImage imageWithData:data];
             
             [data writeToFile:_cachePath atomically:YES];
