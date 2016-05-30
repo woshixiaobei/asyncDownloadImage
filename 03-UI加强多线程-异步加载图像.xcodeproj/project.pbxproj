@@ -53,6 +53,7 @@
 		0BD108E81CFB14280004ED57 /* TPAppCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD108E61CFB14280004ED57 /* TPAppCell.m */; };
 		0BD108E91CFB14280004ED57 /* TPAppCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD108E71CFB14280004ED57 /* TPAppCell.xib */; };
 		0BD108EB1CFB22120004ED57 /* apps.json in Resources */ = {isa = PBXBuildFile; fileRef = 0BD108EA1CFB22120004ED57 /* apps.json */; };
+		0BD108F11CFC31900004ED57 /* TPWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD108F01CFC31900004ED57 /* TPWebImageManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -147,6 +148,8 @@
 		0BD108E61CFB14280004ED57 /* TPAppCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPAppCell.m; sourceTree = "<group>"; };
 		0BD108E71CFB14280004ED57 /* TPAppCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TPAppCell.xib; sourceTree = "<group>"; };
 		0BD108EA1CFB22120004ED57 /* apps.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = apps.json; sourceTree = "<group>"; };
+		0BD108EF1CFC31900004ED57 /* TPWebImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPWebImageManager.h; sourceTree = "<group>"; };
+		0BD108F01CFC31900004ED57 /* TPWebImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPWebImageManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +182,7 @@
 		0BD108541CFB09C30004ED57 /* 03-UI加强多线程-异步加载图像 */ = {
 			isa = PBXGroup;
 			children = (
+				0BD108EE1CFC31600004ED57 /* TPWebImage */,
 				0BD1086C1CFB0ACF0004ED57 /* ThirdLib */,
 				0BD1089D1CFB0ACF0004ED57 /* Tools */,
 				0BD108581CFB09C30004ED57 /* AppDelegate.h */,
@@ -337,6 +341,15 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		0BD108EE1CFC31600004ED57 /* TPWebImage */ = {
+			isa = PBXGroup;
+			children = (
+				0BD108EF1CFC31900004ED57 /* TPWebImageManager.h */,
+				0BD108F01CFC31900004ED57 /* TPWebImageManager.m */,
+			);
+			path = TPWebImage;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -445,6 +458,7 @@
 				0BD108C11CFB0ACF0004ED57 /* AFURLResponseSerialization.m in Sources */,
 				0BD108BD1CFB0ACF0004ED57 /* AFHTTPSessionManager.m in Sources */,
 				0BD108CD1CFB0ACF0004ED57 /* UIImage+GIF.m in Sources */,
+				0BD108F11CFC31900004ED57 /* TPWebImageManager.m in Sources */,
 				0BD108C41CFB0ACF0004ED57 /* NSData+ImageContentType.m in Sources */,
 				0BD108E81CFB14280004ED57 /* TPAppCell.m in Sources */,
 				0BD108CF1CFB0ACF0004ED57 /* UIImage+WebP.m in Sources */,

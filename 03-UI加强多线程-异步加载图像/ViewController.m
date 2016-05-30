@@ -12,6 +12,7 @@
 #import "AFNetworking.h"
 #import "UIImageView+WebCache.h"
 #import "CZAdditions.h"
+#import "TPWebImageManager.h"
 
 static NSString * cellId = @"cellId";
 @interface ViewController ()<UITableViewDataSource>
@@ -56,12 +57,16 @@ static NSString * cellId = @"cellId";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+//    NSLog(@"%@",[TPWebImageManager shareManager]);
     //实例化队列
     _downloadQueue = [[NSOperationQueue alloc]init];
     
     //实例化图像缓冲池
     _imageCache = [NSMutableDictionary dictionary];
     
+    //实例化操作缓冲池
+    _operationCache = [NSMutableDictionary dictionary];
     //异步执行加载数据,方法执行完毕以后,不会自己得到结果.
     [self loadData];
 }
@@ -126,6 +131,7 @@ static NSString * cellId = @"cellId";
     //判断缓冲池中是否缓存,model.icon对应的image
     UIImage *cacheImage = _imageCache[model.icon];
     if (cacheImage != nil) {
+        NSLog(@"返回到内存缓存图像");
         cell.iconView.image = cacheImage;
         return cell;
     }
