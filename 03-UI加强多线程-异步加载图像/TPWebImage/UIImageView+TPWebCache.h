@@ -11,5 +11,8 @@
 @interface UIImageView (TPWebCache)
 
 - (void)tp_setImageWithURLString:(NSString *)urlString;
-
+/**
+ *  下载图像的url字符串
+ */
+@property (nonatomic,copy) NSString *tp_urlString;
 @end
