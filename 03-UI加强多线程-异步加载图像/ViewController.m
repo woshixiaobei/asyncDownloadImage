@@ -126,77 +126,12 @@ static NSString * cellId = @"cellId";
     TPAppModel * model = _appList[indexPath.row];
     cell.nameLabel.text = model.name;
     cell.downloadLabel.text = model.download;
-
-   
-    //判断缓冲池中是否缓存,model.icon对应的image
-    UIImage *cacheImage = _imageCache[model.icon];
-    if (cacheImage != nil) {
-        NSLog(@"返回到内存缓存图像");
-        cell.iconView.image = cacheImage;
-        return cell;
-    }
     
-    
-    //判断沙盒缓存是否存在
-    cacheImage = [UIImage imageWithContentsOfFile:[self cachePathWithURLString:model.icon]];
-    if (cacheImage != nil) {
-        NSLog(@"返回到沙盒图像");
-        //1.设置cell图像
-        cell.iconView.image = cacheImage;
-        //2.设置内存缓存
-        [_imageCache setObject:cacheImage forKey:model.icon];
-        return cell;
-    }
-    
-    //加载网络图片
-    NSURL *url = [NSURL URLWithString:model.icon];
-    
-    UIImage *placeHolder = [UIImage imageNamed:@"user_default"];
-    cell.iconView.image = placeHolder;
-    
-    
-    //异步加载图像
-    //1.添加操作
-    NSBlockOperation *op = [NSBlockOperation blockOperationWithBlock:^{
-        
-        NSLog(@"正在下载的图像%@,%zd",model.name,self.downloadQueue.operationCount);
-        //0.模拟延迟
-//        [NSThread sleepForTimeInterval:1.0];
-        //0.假设第0张下载事件特别长,模拟延时
-        if (indexPath.row == 0) {
-            [NSThread sleepForTimeInterval:3.0];
-        }
-        
-        //1>.将数据转换为二进制数据
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        //2>.将二进制数据转为图像
-        UIImage *image = [UIImage imageWithData:data];
-    
-        
-        //将图像保存到缓冲池,判断图像是否正确从网络服务器下载完成
-        if (image != nil) {
-            [self.imageCache setObject:image forKey:model.icon];
-            
-            //将图像保存到沙盒
-            [data writeToFile:[self cachePathWithURLString:model.icon] atomically:YES];
-        }
-        
-        //?????下载完成之后,将url对应的操作从缓冲池中移除
-        [self.operationCache removeObjectForKey:model.icon];
-        
-        //3>.在主线程上更新UI
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            NSLog(@"队列中下载的操作数是%zd,%@",self.downloadQueue.operationCount,self.operationCache);
-            
-            cell.iconView.image = image;
-        }];
-        
+   //用单例方法完成更新UI
+    [[TPWebImageManager shareManager] downloadImageWithURLString:model.icon completion:^(UIImage * image) {
+        NSLog(@"准备更新UI");
+        cell.iconView.image = image;
     }];
-    //2.将操作添加到队列
-    [_downloadQueue addOperation:op];
-    
-    //将操作添加到下载缓冲池
-    [_operationCache setObject:op forKey:model.icon];
     return cell;
 }
 

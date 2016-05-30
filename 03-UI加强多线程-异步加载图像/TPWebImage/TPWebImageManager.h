@@ -6,7 +6,7 @@
 //  Copyright © 2016年 小贝. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 /**
  *  设置图片管理器,负责所有的图像的异步下载和缓存,是一个单例
@@ -18,5 +18,6 @@
  */
 + (instancetype)shareManager;
 
+- (void)downloadImageWithURLString:(NSString *)urlString completion:(void(^)( UIImage*))completion;
 
 @end
