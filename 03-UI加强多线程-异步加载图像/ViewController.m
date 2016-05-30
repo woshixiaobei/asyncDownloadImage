@@ -10,7 +10,7 @@
 #import "TPAppModel.h"
 #import "TPAppCell.h"
 #import "AFNetworking.h"
-
+#import "UIImageView+WebCache.h"
 
 static NSString * cellId = @"cellId";
 @interface ViewController ()<UITableViewDataSource>
@@ -97,8 +97,11 @@ static NSString * cellId = @"cellId";
     TPAppModel * model = _appList[indexPath.row];
     cell.nameLabel.text = model.name;
     cell.downloadLabel.text = model.download;
-    cell.iconView.image = [UIImage imageNamed:model.icon];
+//    cell.iconView.image = [UIImage imageNamed:model.icon];
 
+    //加载网络图片
+    NSURL *url = [NSURL URLWithString:model.icon];
+    [cell.iconView sd_setImageWithURL:url];
     return cell;
 }
 
