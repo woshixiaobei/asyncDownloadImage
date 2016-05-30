@@ -12,6 +12,7 @@
 #import "AFNetworking.h"
 #import "UIImageView+WebCache.h"
 
+
 static NSString * cellId = @"cellId";
 @interface ViewController ()<UITableViewDataSource>
 
@@ -23,6 +24,10 @@ static NSString * cellId = @"cellId";
  *  应用程序列表数组
  */
 @property (nonatomic, strong) NSArray <TPAppModel *>*appList;
+/**
+ *  下载队列
+ */
+@property (nonatomic, strong) NSOperationQueue *downloadQueue;
 
 @end
 
@@ -44,6 +49,8 @@ static NSString * cellId = @"cellId";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //实例化队列
+    _downloadQueue = [[NSOperationQueue alloc]init];
     
     //异步执行加载数据,方法执行完毕以后,不会自己得到结果.
     [self loadData];
@@ -97,11 +104,28 @@ static NSString * cellId = @"cellId";
     TPAppModel * model = _appList[indexPath.row];
     cell.nameLabel.text = model.name;
     cell.downloadLabel.text = model.download;
-//    cell.iconView.image = [UIImage imageNamed:model.icon];
 
     //加载网络图片
     NSURL *url = [NSURL URLWithString:model.icon];
-    [cell.iconView sd_setImageWithURL:url];
+    //[cell.iconView sd_setImageWithURL:url];
+    
+    //异步加载图像
+    //1.添加操作
+    NSBlockOperation *op = [NSBlockOperation blockOperationWithBlock:^{
+        
+    
+        //1>.将数据转换为二进制数据
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        //2>.将二进制数据转为图像
+        UIImage *image = [UIImage imageWithData:data];
+        //3>.在主线程上更新UI
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            cell.iconView.image = image;
+        }];
+        
+    }];
+    //2.将操作添加到队列
+    [_downloadQueue addOperation:op];
     return cell;
 }
 
