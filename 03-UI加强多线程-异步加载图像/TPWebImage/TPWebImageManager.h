@@ -18,4 +18,5 @@
  */
 + (instancetype)shareManager;
 
+
 @end

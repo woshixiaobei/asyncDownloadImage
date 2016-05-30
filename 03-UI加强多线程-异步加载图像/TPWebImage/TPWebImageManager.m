@@ -8,6 +8,22 @@
 
 #import "TPWebImageManager.h"
 
+@interface TPWebImageManager()
+
+/**
+ *  下载队列
+ */
+@property (nonatomic, strong) NSOperationQueue *downloadQueue;
+/**
+ *  图像缓冲池
+ */
+@property (nonatomic, strong) NSMutableDictionary *imageCache;
+/**
+ *  操作缓冲池
+ */
+@property (nonatomic, strong) NSMutableDictionary *operationCache;
+
+@end
 @implementation TPWebImageManager
 
 + (instancetype)shareManager {
@@ -19,5 +35,23 @@
     });
     return instance;
 
+}
+
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        
+        //初始化队列与缓存
+        _downloadQueue = [[NSOperationQueue alloc]init];
+        
+  
+        _imageCache = [NSMutableDictionary dictionary];
+        
+   
+        _operationCache = [NSMutableDictionary dictionary];
+    }
+    return self;
 }
 @end

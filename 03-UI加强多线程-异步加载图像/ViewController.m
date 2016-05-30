@@ -58,7 +58,7 @@ static NSString * cellId = @"cellId";
     [super viewDidLoad];
     
     
-//    NSLog(@"%@",[TPWebImageManager shareManager]);
+    NSLog(@"%@",[TPWebImageManager shareManager]);
     //实例化队列
     _downloadQueue = [[NSOperationQueue alloc]init];
     
