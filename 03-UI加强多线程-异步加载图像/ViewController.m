@@ -28,7 +28,10 @@ static NSString * cellId = @"cellId";
  *  下载队列
  */
 @property (nonatomic, strong) NSOperationQueue *downloadQueue;
-
+/**
+ *  图像缓冲池
+ */
+@property (nonatomic, strong) NSMutableDictionary *imageCache;
 @end
 
 @implementation ViewController
@@ -52,6 +55,9 @@ static NSString * cellId = @"cellId";
     //实例化队列
     _downloadQueue = [[NSOperationQueue alloc]init];
     
+    //实例化图像缓冲池
+    _imageCache = [NSMutableDictionary dictionary];
+    
     //异步执行加载数据,方法执行完毕以后,不会自己得到结果.
     [self loadData];
 }
@@ -59,6 +65,11 @@ static NSString * cellId = @"cellId";
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
    
+    //释放资源
+    //1.下载好的网络图片-模型添加属性保存图像,不好释放,下一步就是添加图像缓冲池,方便释放
+    //2.没有完成的下载操作
+    [_imageCache removeAllObjects];
+    [_downloadQueue cancelAllOperations];
 }
 #pragma mark-加载数据
 - (void) loadData {
@@ -105,11 +116,20 @@ static NSString * cellId = @"cellId";
     cell.nameLabel.text = model.name;
     cell.downloadLabel.text = model.download;
 
+   
+    //判断缓冲池中是否缓存,model.icon对应的image
+    UIImage *cacheImage = _imageCache[model.icon];
+    if (cacheImage != nil) {
+        cell.iconView.image = cacheImage;
+        return cell;
+    }
+    
     //加载网络图片
     NSURL *url = [NSURL URLWithString:model.icon];
-    //[cell.iconView sd_setImageWithURL:url];
+    
     UIImage *placeHolder = [UIImage imageNamed:@"user_default"];
     cell.iconView.image = placeHolder;
+    
     
     //异步加载图像
     //1.添加操作
@@ -121,6 +141,10 @@ static NSString * cellId = @"cellId";
         NSData *data = [NSData dataWithContentsOfURL:url];
         //2>.将二进制数据转为图像
         UIImage *image = [UIImage imageWithData:data];
+        
+        //将图像添加到图像缓冲池中
+        [self.imageCache setObject:image forKey:model.icon];
+        
         //3>.在主线程上更新UI
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             cell.iconView.image = image;

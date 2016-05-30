@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface TPAppModel : NSObject
 
 @property (nonatomic, copy) NSString *name;
