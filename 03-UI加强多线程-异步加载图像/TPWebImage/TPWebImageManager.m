@@ -89,7 +89,7 @@
     }
     
     //3.下载操作过长,需要通过操作缓存避免重复下载
-    if (_operationCache != nil) {
+    if (_operationCache[urlString] != nil) {
         NSLog(@"%@ 正在下载中,稍安勿躁....",urlString);
         return;
     }

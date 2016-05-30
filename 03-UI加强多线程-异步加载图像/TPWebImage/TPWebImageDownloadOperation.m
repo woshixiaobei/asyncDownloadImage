@@ -32,5 +32,37 @@
 
 }
 
+/**
+ *  自定义操作入口,如果是自定义,会重写这个方法
+ */
 
+- (void)main {
+    @autoreleasepool {
+        NSLog(@"准备下载图像%@,%@",[NSThread currentThread],_urlString);
+        [NSThread sleepForTimeInterval:1.0];
+        
+        NSURL *url = [NSURL URLWithString:_urlString];
+        //下载前判断操作是否被取消
+        if (self.isCancelled) {
+            NSLog(@"下载前被取消");
+            return;
+        }
+        
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        //在下载之后判断操作是否被取消
+        if (self.isCancelled) {
+            NSLog(@"下载之后被取消,直接返回,不回调");
+            return;
+        }
+        //判断二进制数据是否获得成功
+        if (data != nil) {
+            _downloadImage = [UIImage imageWithData:data];
+            
+            [data writeToFile:_cachePath atomically:YES];
+            NSLog(@"%@保存成功 ",_cachePath);
+        }
+    }
+    
+    
+}
 @end

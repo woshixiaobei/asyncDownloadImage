@@ -6,7 +6,7 @@
 //  Copyright © 2016年 小贝. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 /**
  *  负责单个网络的图像下载操作,如果下载成功,写入沙盒
  */
@@ -17,4 +17,5 @@
  */
 + (instancetype)downloadOperationWithURLString:(NSString *)urlString cachePath:(NSString *)cachePath;
 
+@property (nonatomic, strong, readonly)UIImage *downloadImage;
 @end
