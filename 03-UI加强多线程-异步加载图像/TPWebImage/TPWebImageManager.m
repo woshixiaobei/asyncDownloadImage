@@ -7,6 +7,8 @@
 //
 
 #import "TPWebImageManager.h"
+#import "CZAdditions.h"
+#import "TPWebImageDownloadOperation.h"
 
 @interface TPWebImageManager()
 
@@ -62,20 +64,50 @@
 
 - (void)downloadImageWithURLString:(NSString *)urlString completion:(void(^)( UIImage*))completion {
 
-    //1.模拟异步
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        [NSThread sleepForTimeInterval:1.0];
-        
-        //创建图像
-        UIImage *image = [UIImage imageNamed:@"user_default"];
-        
-        //在主线程上更新UI
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"执行完成回调");
-            completion(image);
-        });
-    });
-    NSLog(@"come here");
+    
+       //0.断言
+    NSAssert(completion != nil, @"必须传入完成回调");
+    
+    //1.内存缓存
+    UIImage *cacheImage = _imageCache[urlString];
+    
+    if (cacheImage != nil) {
+        NSLog(@"返回内存缓存");
+        completion(cacheImage);
+    }
+    
+    //2.沙盒缓存
+    NSString *cachePath = [self cachePathWithURLString:urlString];
+    cacheImage = [UIImage imageWithContentsOfFile:cachePath];
+    if (cacheImage != nil) {
+        NSLog(@"返回沙盒缓存");
+        //1>设置内存缓存
+        [_imageCache setObject:cacheImage forKey:urlString];
+        //2>完成回调
+        completion(cacheImage);
+        return;
+    }
+    
+    //3.下载操作过长,需要通过操作缓存避免重复下载
+    if (_operationCache != nil) {
+        NSLog(@"%@ 正在下载中,稍安勿躁....",urlString);
+        return;
+    }
+    //NSLog(@"准备下载图像");
+    
+    //4.创建下载单张图像的操作
+    TPWebImageDownloadOperation *op = [TPWebImageDownloadOperation downloadOperationWithURLString:urlString cachePath:cachePath];
+    //添加到队列
+    [_downloadQueue addOperation:op];
+    //添加到下载操作缓冲池
+    [_operationCache setObject:op forKey:urlString];
+    
 }
 
+- (NSString *)cachePathWithURLString:(NSString *)urlString {
+    NSString *cacheDir = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).lastObject;
+    NSString *imageName = [urlString cz_md5String];
+    return [cacheDir stringByAppendingPathComponent:imageName];
+
+}
 @end

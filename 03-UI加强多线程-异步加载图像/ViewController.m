@@ -58,7 +58,7 @@ static NSString * cellId = @"cellId";
     [super viewDidLoad];
     
     
-    NSLog(@"%@",[TPWebImageManager shareManager]);
+//    NSLog(@"%@",[TPWebImageManager shareManager]);
     //实例化队列
     _downloadQueue = [[NSOperationQueue alloc]init];
     
@@ -129,28 +129,10 @@ static NSString * cellId = @"cellId";
     
    //用单例方法完成更新UI
     [[TPWebImageManager shareManager] downloadImageWithURLString:model.icon completion:^(UIImage * image) {
-        NSLog(@"准备更新UI");
+//        NSLog(@"准备更新UI");
         cell.iconView.image = image;
     }];
     return cell;
-}
-
-/**
- *  根据url字符串生成缓存的全路径
- */
-
-
-- (NSString *) cachePathWithURLString:(NSString *)urlString {
-
-    //1.获取cache目录
-    NSString *cacheDir = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).lastObject;
-    
-    //2.生成MD5的文件
-    NSString *fileName = [urlString cz_md5String];
-    
-    //3.返回合成的全路径
-    return [cacheDir stringByAppendingPathComponent:fileName];
-
 }
 
 @end
