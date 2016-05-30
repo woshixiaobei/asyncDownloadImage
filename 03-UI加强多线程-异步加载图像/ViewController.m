@@ -13,6 +13,8 @@
 #import "UIImageView+WebCache.h"
 #import "CZAdditions.h"
 #import "TPWebImageManager.h"
+#import "UIImageView+TPWebCache.h"
+
 
 static NSString * cellId = @"cellId";
 @interface ViewController ()<UITableViewDataSource>
@@ -127,11 +129,17 @@ static NSString * cellId = @"cellId";
     cell.nameLabel.text = model.name;
     cell.downloadLabel.text = model.download;
     
-   //用单例方法完成更新UI
-    [[TPWebImageManager shareManager] downloadImageWithURLString:model.icon completion:^(UIImage * image) {
-//        NSLog(@"准备更新UI");
-        cell.iconView.image = image;
-    }];
+    //设置占位图像
+    UIImage *placeHolder = [UIImage imageNamed:@"user_default"];
+    cell.iconView.image = placeHolder;
+    
+//   //用单例方法完成更新UI
+//    [[TPWebImageManager shareManager] downloadImageWithURLString:model.icon completion:^(UIImage * image) {
+////        NSLog(@"准备更新UI");
+//        cell.iconView.image = image;
+//    }];
+    
+    [cell.iconView tp_setImageWithURLString:model.icon];
     return cell;
 }
 
