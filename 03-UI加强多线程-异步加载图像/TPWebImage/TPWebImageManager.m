@@ -54,8 +54,38 @@
         
    
         _operationCache = [NSMutableDictionary dictionary];
+        
+        //注册内存警告通知
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(memoryWarning) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
     }
     return self;
+}
+
+#pragma mark-内存警告
+- (void)memoryWarning {
+
+    [_imageCache removeAllObjects];
+    
+    [_downloadQueue cancelAllOperations];
+    //清空下载操作缓冲池
+    [_operationCache removeAllObjects];
+
+
+}
+//永远没有机会执行到
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+
+}
+
+#pragma mark-取消之前的下载操作
+- (void) cancelDownloadWithURLString:(NSString *)urlString {
+
+    //1.从缓冲池取出操作
+    TPWebImageDownloadOperation *op = _operationCache[urlString];
+    
+    //2.给操作发送cancel消息,如果没有拿到
+    [op cancel];
 }
 
 #pragma mark-下载方法

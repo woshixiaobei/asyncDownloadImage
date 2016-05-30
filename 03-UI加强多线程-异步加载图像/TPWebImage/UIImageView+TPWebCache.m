@@ -23,12 +23,19 @@ const char * tp_URLStringKey = "tp_URLStringKey";
     if (![urlString isEqualToString:self.tp_urlString] && self.tp_urlString != nil) {
         NSLog(@"取消之前的下载操作%@",self.tp_urlString);
         
+        [[TPWebImageManager shareManager] cancelDownloadWithURLString:self.tp_urlString];
         
     }
     //记录新的地址
     self.tp_urlString = urlString;
+    //在下载之前,将图像设置为nil
+    self.image = nil;
     
     [[TPWebImageManager shareManager] downloadImageWithURLString:urlString completion:^(UIImage * image) {
+        //下载完成之后,清空之前保存的URLString
+        //????避免再一次进入之后,提示取消下载操作
+        self.tp_urlString = nil;
+        
         self.image = image;
     }];
 }

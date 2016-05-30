@@ -20,4 +20,6 @@
 
 - (void)downloadImageWithURLString:(NSString *)urlString completion:(void(^)( UIImage*))completion;
 
+- (void) cancelDownloadWithURLString:(NSString *)urlString;
+
 @end
