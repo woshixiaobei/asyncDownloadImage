@@ -55,6 +55,7 @@
 		0BD108EB1CFB22120004ED57 /* apps.json in Resources */ = {isa = PBXBuildFile; fileRef = 0BD108EA1CFB22120004ED57 /* apps.json */; };
 		0BD108F11CFC31900004ED57 /* TPWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD108F01CFC31900004ED57 /* TPWebImageManager.m */; };
 		0BD108F41CFC49FE0004ED57 /* TPWebImageDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD108F31CFC49FE0004ED57 /* TPWebImageDownloadOperation.m */; };
+		0BD108FA1CFC78720004ED57 /* UIImageView+TPWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD108F91CFC78720004ED57 /* UIImageView+TPWebCache.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -153,6 +154,8 @@
 		0BD108F01CFC31900004ED57 /* TPWebImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPWebImageManager.m; sourceTree = "<group>"; };
 		0BD108F21CFC49FE0004ED57 /* TPWebImageDownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPWebImageDownloadOperation.h; sourceTree = "<group>"; };
 		0BD108F31CFC49FE0004ED57 /* TPWebImageDownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPWebImageDownloadOperation.m; sourceTree = "<group>"; };
+		0BD108F81CFC78720004ED57 /* UIImageView+TPWebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+TPWebCache.h"; sourceTree = "<group>"; };
+		0BD108F91CFC78720004ED57 /* UIImageView+TPWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+TPWebCache.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -351,6 +354,8 @@
 				0BD108F01CFC31900004ED57 /* TPWebImageManager.m */,
 				0BD108F21CFC49FE0004ED57 /* TPWebImageDownloadOperation.h */,
 				0BD108F31CFC49FE0004ED57 /* TPWebImageDownloadOperation.m */,
+				0BD108F81CFC78720004ED57 /* UIImageView+TPWebCache.h */,
+				0BD108F91CFC78720004ED57 /* UIImageView+TPWebCache.m */,
 			);
 			path = TPWebImage;
 			sourceTree = "<group>";
@@ -463,6 +468,7 @@
 				0BD108C01CFB0ACF0004ED57 /* AFURLRequestSerialization.m in Sources */,
 				0BD108C11CFB0ACF0004ED57 /* AFURLResponseSerialization.m in Sources */,
 				0BD108BD1CFB0ACF0004ED57 /* AFHTTPSessionManager.m in Sources */,
+				0BD108FA1CFC78720004ED57 /* UIImageView+TPWebCache.m in Sources */,
 				0BD108CD1CFB0ACF0004ED57 /* UIImage+GIF.m in Sources */,
 				0BD108F11CFC31900004ED57 /* TPWebImageManager.m in Sources */,
 				0BD108C41CFB0ACF0004ED57 /* NSData+ImageContentType.m in Sources */,

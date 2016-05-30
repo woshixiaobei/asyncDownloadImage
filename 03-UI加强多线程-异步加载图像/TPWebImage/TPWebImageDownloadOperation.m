@@ -39,7 +39,7 @@
 - (void)main {
     @autoreleasepool {
         NSLog(@"准备下载图像%@,%@",[NSThread currentThread],_urlString);
-        [NSThread sleepForTimeInterval:1.0];
+        [NSThread sleepForTimeInterval:3.0];
         
         NSURL *url = [NSURL URLWithString:_urlString];
         //下载前判断操作是否被取消

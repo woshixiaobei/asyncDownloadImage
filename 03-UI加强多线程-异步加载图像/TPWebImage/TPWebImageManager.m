@@ -102,6 +102,21 @@
     __weak TPWebImageDownloadOperation *weakOp = op;
     [op setCompletionBlock:^{
         NSLog(@"下载操作完成-%@,%@",[NSThread currentThread],weakOp.downloadImage);
+        
+        //1>通过属性获得下载的图像
+        UIImage *image = weakOp.downloadImage;
+        if (image != nil) {
+            [_imageCache setObject:image forKey:urlString];
+        }
+        
+        //将操作从缓冲池中删除
+        [_operationCache removeObjectForKey:urlString];
+        //主线程上更新UI
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            //执行回调
+            completion(image);
+        }];
+        
     }];
     
     //添加到队列
