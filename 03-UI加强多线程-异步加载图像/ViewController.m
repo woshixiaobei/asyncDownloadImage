@@ -83,6 +83,8 @@ static NSString * cellId = @"cellId";
     [_downloadQueue cancelAllOperations];
     //清空下载操作缓冲池
     [_operationCache removeAllObjects];
+    
+    NSLog(@"nihao");
 }
 #pragma mark-加载数据
 - (void) loadData {
